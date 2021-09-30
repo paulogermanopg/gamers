@@ -3,40 +3,18 @@ import { StyleSheet, Text, View } from 'react-native'
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font'
 
-let customFonts = {
-  'ConcertOne-Regular': require('../../assets/fonts/ConcertOne-Regular.ttf'),
-}
+import Header from '../components/common/Header'
 
 
-export default class Spash extends Component { 
-  state = {
-    fontsLoaded: false,
-  }
-
-  async _loadFontsAsync() {
-    await Font.loadAsync(customFonts)
-    this.setState({ fontsLoaded: true })
-  }
-
-  componentDidMount() {
-    this._loadFontsAsync()
-  }
+export default class AreaGamer extends Component { 
 
   render() {
-    if (this.state.fontsLoaded) {
       return (
         <View style={styles.container}>
-          <Text style={{ fontFamily: 'ConcertOne-Regular' }}>Área Gamer</Text>
-        </View>
-        
-      )
-    } else {
-      return (
-        <View style={styles.container}>
+          <Header />
           <Text>Área Gamer</Text>
         </View>
       )
-    }
   }
     
 }

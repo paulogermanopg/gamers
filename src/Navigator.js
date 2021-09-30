@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { createAppContainer, createSwitchNavigator} from 'react-navigation'
+import React from 'react'
+import { createAppContainer} from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import Home from './screens/Home'
 import AreaGamer from './screens/AreaGamer'
@@ -43,7 +43,7 @@ const MenuConfig = {
     initialRouteName: 'Home',
     tabBarOptions: {
         showLabel: false,
-        activeTintColor: 'rgba(0,0,0,0.5)',
+        activeTintColor: '#789ac7',
         inactiveTintColor: '#fff',
         style: {
             backgroundColor: '#3c0068'

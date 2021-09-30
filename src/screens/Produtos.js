@@ -1,14 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import AppLoading from 'expo-app-loading'
+import * as Font from 'expo-font'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Produtos!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import Header from '../components/common/Header'
+
+
+export default class Produtos extends Component { 
+
+  render() {
+      return (
+        <View style={styles.container}>
+          <Header />
+          <Text>Produtos</Text>
+        </View>
+      )
+  }
+    
 }
 
 const styles = StyleSheet.create({
