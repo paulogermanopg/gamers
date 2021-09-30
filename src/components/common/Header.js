@@ -41,8 +41,9 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 1,
+        marginTop: 0,
         padding: 10,
+        paddingTop: 35,
         borderBottomWidth: 0.5,
         borderColor: '#BBB',
         backgroundColor: '#3c0068',

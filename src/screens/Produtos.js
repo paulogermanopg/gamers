@@ -1,18 +1,30 @@
 import React, {Component} from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import AppLoading from 'expo-app-loading'
-import * as Font from 'expo-font'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
 
 import Header from '../components/common/Header'
+import ProdutosContent from '../components/produtos/ProdutosContent'
+import data from '../../products.json'
 
+let jogos = data
 
-export default class Produtos extends Component { 
+export default class Produtos extends Component {
+  state = {
+    produtos: jogos
+  }
 
   render() {
+
+    console.log(data.length)
       return (
         <View style={styles.container}>
           <Header />
-          <Text>Produtos</Text>
+
+          <Text style={styles.titulo}>Jogos Disponíveis</Text>
+
+          <FlatList data={this.state.produtos}
+            keyExtractor={item => `${item.id}`}
+            renderItem={( { item } ) =>
+            <ProdutosContent key={item.id} {...item} />} />
         </View>
       )
   }
@@ -26,4 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  titulo: {
+    fontSize: 20
+  }
 });
