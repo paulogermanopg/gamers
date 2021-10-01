@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     collapseH: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#3c0068',
+        backgroundColor: '#300053',
         borderRadius: 10,
         width: Dimensions.get('window').width * 0.90,
     },

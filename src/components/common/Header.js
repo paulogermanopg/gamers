@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import * as Font from 'expo-font'
+import Carrinho from './Carrinho'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -12,6 +13,7 @@ let customFonts = {
 class Header extends Component {
     state = {
         fontsLoaded: false,
+        showCarrinho: false,
     }
 
     //Necessário para usar fonte personalizada no Expo
@@ -29,10 +31,15 @@ class Header extends Component {
 
         return(
             <View style={styles.container}>
+                <Carrinho isVisible={this.state.showCarrinho} onCancel={() => this.setState({ showCarrinho: false })} />
                 {this.state.fontsLoaded &&
                     <Text style={styles.title}>Gamer$</Text>
                 }
-                <FontAwesomeIcon icon={ faShoppingCart } size={32} color={'rgb(255,255,255)'}/>
+                <TouchableOpacity style={styles.carrinho}
+                    onPress={() => this.setState({ showCarrinho: true })}>
+                    <FontAwesomeIcon icon={ faShoppingCart } size={32} color={'rgb(255,255,255)'}/>
+                </TouchableOpacity>
+                
                 
             </View>
             
@@ -48,7 +55,7 @@ const styles = StyleSheet.create({
         paddingTop: 35,
         borderBottomWidth: 0.5,
         borderColor: '#BBB',
-        backgroundColor: '#3c0068',
+        backgroundColor: '#300053',
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -56,8 +63,12 @@ const styles = StyleSheet.create({
     title: {
         color: '#FFF',
         fontFamily: 'ConcertOne-Regular',
-        fontSize: 30,
+        fontSize: 35,
     },
+    carrinho: {
+        paddingRight: 5,
+        paddingTop: 5
+    }
 })
 
 export default Header

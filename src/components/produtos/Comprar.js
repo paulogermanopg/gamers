@@ -28,7 +28,7 @@ class Comprar extends Component {
     render() {
         return (
             <TouchableOpacity style={styles.container}
-                onPress={() => this.ordenar('Popular')}>
+                onPress={this.nada}>
                 <Text style={this.state.fontsLoaded ? styles.texto : styles.textoSemFonte }>+Carrinho</Text>
                 <FontAwesomeIcon icon={ faShoppingCart } size={28} color={'rgb(255,255,255)'}/>
             </TouchableOpacity>

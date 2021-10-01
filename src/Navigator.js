@@ -46,7 +46,7 @@ const MenuConfig = {
         activeTintColor: '#789ac7',
         inactiveTintColor: '#fff',
         style: {
-            backgroundColor: '#3c0068'
+            backgroundColor: '#300053'
         }
     }
 }

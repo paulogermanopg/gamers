@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, View, FlatList } from 'react-native'
 
 import Header from '../components/common/Header'
 import ProdutosContent from '../components/produtos/ProdutosContent'
