@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Dimensions, Text } from 'react-native'
+import { View, StyleSheet, Dimensions, Text, TouchableOpacity } from 'react-native'
 import * as Font from 'expo-font'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -27,12 +27,11 @@ class Comprar extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-
+            <TouchableOpacity style={styles.container}
+                onPress={() => this.ordenar('Popular')}>
                 <Text style={this.state.fontsLoaded ? styles.texto : styles.textoSemFonte }>+Carrinho</Text>
                 <FontAwesomeIcon icon={ faShoppingCart } size={28} color={'rgb(255,255,255)'}/>
-
-            </View>
+            </TouchableOpacity>
         )
     }
 }
@@ -43,6 +42,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 10,
+        padding: 5,
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: '#fff'
     },
     texto: {
         fontFamily: 'PTSans-Bold',
@@ -51,7 +54,10 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
     textoSemFonte: {
-        fontFamily: ''
+        fontFamily: '',
+        fontSize: 18,
+        textAlign: 'center',
+        color: '#fff',
     },
 })
 

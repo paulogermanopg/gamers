@@ -14,7 +14,9 @@ class ProdutosContent extends Component {
             <View style={styles.container}>
 
                 <View style={styles.blocoEsquerdo}>
-                    <Image source={requiresImages[indice.indexOf(this.props.image)]} style={styles.image} />
+                    <View style={styles.containerImage}>
+                        <Image source={requiresImages[indice.indexOf(this.props.image)]} style={styles.image} />
+                    </View>   
                 </View>
 
                 <View style={styles.blocoDireito}>
@@ -34,15 +36,24 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#3c6090',
-        borderRadius: 20,
+        borderBottomRightRadius: 20,
+        borderTopLeftRadius: 20,
         marginTop: 20,
         marginBottom: 10,
     },
     image: {
         width: Dimensions.get('window').width * 0.4,
+        height: Dimensions.get('window').width * 0.4,
         resizeMode: 'contain',
-        borderRadius: 10,
         marginLeft: 10,
+        marginVertical: 10,
+        
+    },
+    containerImage: {
+        borderWidth: 1.5,
+        borderTopLeftRadius: 20,
+        borderColor: '#3c6090',
+        backgroundColor: '#ebeff5'
     },
     blocoEsquerdo: {
         flexDirection: 'column',
