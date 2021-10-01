@@ -42,7 +42,7 @@ class Carrinho extends Component {
                         {/* Parte do título e botão de sair */}
                         <View style={styles.blocoTitulo}>
                             <TouchableOpacity style={styles.left} onPress={this.props.onCancel}>
-                                <FontAwesomeIcon icon={ faTimes } size={40} color='#300053'/>
+                                <FontAwesomeIcon icon={ faTimes } size={40} color='#006666'/>
                             </TouchableOpacity>
                             <View style={styles.center}>
                                 <Text style={this.state.fontsLoaded ? styles.textoTitulo: styles.textoTituloSemFonte}>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ebeff5',
         borderWidth: 2,
         borderRadius: 10,
-        borderColor: '#300053',
+        borderColor: '#006666',
         width: Dimensions.get('window').width * 0.9
     },
     blocoTitulo: {
@@ -164,13 +164,13 @@ const styles = StyleSheet.create({
     },
     textoTitulo: {
         fontFamily: 'PTSans-Bold',
-        color: '#300053',
+        color: '#005252',
         textAlign: 'justify',
         fontSize: 25,
         margin: 10
     },
     textoTituloSemFonte: {
-        color: '#300053',
+        color: '#005252',
         textAlign: 'justify',
         fontSize: 25,
         margin: 10
@@ -189,20 +189,26 @@ const styles = StyleSheet.create({
     },
    tituloValores: {
         fontFamily: 'PTSans-Bold',
-        color: '#300053',
+        color: '#005252',
+        textAlign: 'left',
+        fontSize: 18,
+        margin: 3
+    },
+    tituloValoresSemFonte: {
+        color: '#005252',
         textAlign: 'left',
         fontSize: 18,
         margin: 3
     },
     valores: {
         fontFamily: 'PTSans-Bold',
-        color: '#300053',
+        color: '#005252',
         textAlign: 'right',
         fontSize: 18,
         margin: 3
     },
    valoresSemFonte: {
-        color: '#300053',
+        color: '#005252',
         textAlign: 'left',
         fontSize: 18,
         margin: 3
@@ -211,7 +217,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.8,
         flexDirection: 'row',
         justifyContent: 'center',
-        backgroundColor: '#300053',
+        backgroundColor: '#006666',
         borderBottomRightRadius: 20,
         borderTopLeftRadius: 20,
         marginVertical: 5,

@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         paddingTop: 35,
         borderBottomWidth: 0.5,
         borderColor: '#BBB',
-        backgroundColor: '#300053',
+        backgroundColor: '#006666',
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
