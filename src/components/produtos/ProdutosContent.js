@@ -7,6 +7,7 @@ import Preco from './Preco'
 import Comprar from './Comprar'
 
 class ProdutosContent extends Component {
+    //Este é o componente responsável pelo container do produto, chamando como filhos Titulo, Preço e Comprar 
 
     render() {
         return (
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#789ac7',
+        backgroundColor: '#3c6090',
         borderRadius: 20,
         marginTop: 20,
         marginBottom: 10,

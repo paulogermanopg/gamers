@@ -14,6 +14,7 @@ class Header extends Component {
         fontsLoaded: false,
     }
 
+    //Necessário para usar fonte personalizada no Expo
     async _loadFontsAsync() {
         await Font.loadAsync(customFonts)
         this.setState({ fontsLoaded: true })
@@ -22,6 +23,7 @@ class Header extends Component {
     componentDidMount() {
         this._loadFontsAsync()
     }
+    //-----------------------
 
     render() {
 

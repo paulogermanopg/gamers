@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native'
 import Header from '../components/common/Header'
 import ProdutosContent from '../components/produtos/ProdutosContent'
 import data from '../../products.json'
+import Ordenacao from '../components/produtos/Ordenacao'
 
 let jogos = data
 
@@ -12,14 +13,16 @@ export default class Produtos extends Component {
     produtos: jogos
   }
 
-  render() {
+  ordenar = organizado => {
+    this.setState({ produtos: organizado })
+  }
 
-    console.log(data.length)
+  render() {
       return (
         <View style={styles.container}>
           <Header />
 
-          <Text style={styles.titulo}>Jogos Disponíveis</Text>
+          <Ordenacao produtos={this.state.produtos} onOrdenar={this.ordenar}/>
 
           <FlatList data={this.state.produtos}
             keyExtractor={item => `${item.id}`}
@@ -38,7 +41,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  titulo: {
-    fontSize: 20
-  }
 });
