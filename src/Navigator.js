@@ -51,6 +51,8 @@ const MenuConfig = {
     }
 }
 
+
+
 const MenuNavigator = createBottomTabNavigator(MenuRoutes, MenuConfig)
 
 export default createAppContainer(MenuNavigator)

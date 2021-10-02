@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { StyleSheet, View, FlatList } from 'react-native'
 
+
 import Header from '../components/common/Header'
 import ProdutosContent from '../components/produtos/ProdutosContent'
 import data from '../../products.json'
@@ -10,8 +11,9 @@ let jogos = data
 
 export default class Produtos extends Component {
   state = {
-    produtos: jogos
+    produtos: jogos,
   }
+
 
   ordenar = organizado => {
     this.setState({ produtos: organizado })
@@ -41,4 +43,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})

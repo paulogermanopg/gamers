@@ -14,6 +14,7 @@ class Header extends Component {
     state = {
         fontsLoaded: false,
         showCarrinho: false,
+        carrinho: this.props.carrinho,
     }
 
     //Necessário para usar fonte personalizada no Expo
@@ -31,16 +32,21 @@ class Header extends Component {
 
         return(
             <View style={styles.container}>
-                <Carrinho isVisible={this.state.showCarrinho} onCancel={() => this.setState({ showCarrinho: false })} />
+
+                <Carrinho isVisible={this.state.showCarrinho} 
+                    onCancel={() => this.setState({ showCarrinho: false })} />
+                
                 {this.state.fontsLoaded &&
                     <Text style={styles.title}>Gamer$</Text>
                 }
+
+
+
                 <TouchableOpacity style={styles.carrinho}
                     onPress={() => this.setState({ showCarrinho: true })}>
                     <FontAwesomeIcon icon={ faShoppingCart } size={32} color={'rgb(255,255,255)'}/>
                 </TouchableOpacity>
-                
-                
+
             </View>
             
         )

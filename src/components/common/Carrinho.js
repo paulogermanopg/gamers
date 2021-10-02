@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { addCarrinho } from '../../store/actions/produtos'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faGhost } from '@fortawesome/free-solid-svg-icons'
 
 let customFonts = {
     'ConcertOne-Regular': require('../../../assets/fonts/ConcertOne-Regular.ttf'),
@@ -22,6 +22,7 @@ class Carrinho extends Component {
         subTotal: 0,
         total: 0,
         frete: 0,
+        semProdutos: true,
     }
 
     //Necessário para usar fonte personalizada no Expo
@@ -38,9 +39,17 @@ class Carrinho extends Component {
     //Varifica toda vez que houver atualização no estado da aplicação
     componentDidUpdate = prevProps => {
         if (prevProps != this.props) {
-            this.setState({ 
-                carrinho: this.props.carrinho,
-             })
+             if(this.props.carrinho.length == 0){
+                this.setState({ 
+                    carrinho: this.props.carrinho,
+                    semProdutos: true,
+                 })
+             } else {
+                this.setState({ 
+                    carrinho: this.props.carrinho,
+                    semProdutos: false,
+                 })
+             }
              this.calcularValores()
         }
     }
@@ -118,14 +127,26 @@ class Carrinho extends Component {
                             </View>
                         </View>
                         
-                        {/* Lista de produtos adicionados */}
-                        <View style={styles.blocoProdutos}>
-                            <FlatList data={this.state.carrinho}
-                                keyExtractor={(item, index) => index.toString()}
-                                renderItem={( { item } ) =>
-                                <ProdutosCarrinho key={item.id} {...item} 
-                                    onApagarJogo={this.apagarJogo} />} />
-                        </View>
+                        {/* Mostra Lista de produtos adicionados se houver produtos */}
+                        {!this.state.semProdutos &&
+                            <View style={styles.blocoProdutos}>
+                                <FlatList data={this.state.carrinho}
+                                    keyExtractor={(item, index) => index.toString()}
+                                    renderItem={( { item } ) =>
+                                    <ProdutosCarrinho key={item.id} {...item} 
+                                        onApagarJogo={this.apagarJogo} />} />
+                            </View>
+                        }
+
+                        {/* Mostra fantasma acaso não tenha produtos */}
+                        {this.state.semProdutos && 
+                            <View style={styles.blocoProdutos}>
+                                <View style={{ alignItems: 'center', marginTop: 20}}>
+                                    <FontAwesomeIcon icon={ faGhost } size={90} color='rgba(0, 102, 102,0.5)'/>
+                                </View>
+                            </View>
+                        }
+                        
 
                         {/* Informações do checkout */}
                         <View style={{ flexDirection: 'row' }}>
