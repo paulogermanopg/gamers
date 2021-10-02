@@ -3,11 +3,11 @@ import { View, StyleSheet, Dimensions, Text, TouchableOpacity, Modal, FlatList }
 import * as Font from 'expo-font'
 import ProdutosCarrinho from './ProdutosCarrinho'
 
+import { connect } from 'react-redux'
+import { addCarrinho } from '../../store/actions/produtos'
+
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-
-import data from '../../../products.json'
-let jogos = data
 
 let customFonts = {
     'ConcertOne-Regular': require('../../../assets/fonts/ConcertOne-Regular.ttf'),
@@ -18,7 +18,10 @@ let customFonts = {
 class Carrinho extends Component {
     state = {
         fontsLoaded: false,
-        produtos: jogos,
+        carrinho: this.props.carrinho,
+        subTotal: 0,
+        total: 0,
+        frete: 0,
     }
 
     //Necessário para usar fonte personalizada no Expo
@@ -31,6 +34,70 @@ class Carrinho extends Component {
         this._loadFontsAsync()
     }
     //-------------------------------
+
+    //Varifica toda vez que houver atualização no estado da aplicação
+    componentDidUpdate = prevProps => {
+        if (prevProps != this.props) {
+            this.setState({ 
+                carrinho: this.props.carrinho,
+             })
+             this.calcularValores()
+        }
+    }
+
+    //calculrValores é chamado no componentDidUpdate toda vez que o props é atualizado
+    calcularValores = () => {
+        let frete = this.state.carrinho.length * 10
+        let subTotal = 0
+        let total = 0
+        let cont = 0
+
+        while (cont < this.state.carrinho.length){
+            subTotal = subTotal + this.state.carrinho[cont].price
+            cont ++
+        }
+
+        if (subTotal > 250){
+            frete = 0
+        }
+
+        total = subTotal + frete
+
+        this.setState({ 
+            subTotal: parseFloat(subTotal.toFixed(2)), 
+            total: parseFloat(total.toFixed(2)), 
+            frete: frete 
+        })
+    }
+
+    //apagarJogo é passado como propriedade para o ProdutosCarrinho, e retorna via callback o id
+    apagarJogo = async(id) => {
+        let array = []
+        let cont = 0
+        let ocorrencia = 0
+
+        //ocorrencia dirá quantas vezes o item se repete no carrinho
+        ocorrencia = this.state.carrinho.filter(obj => obj.id == id).length 
+        //array será uma lista sem o item a ser excluído
+        array = this.state.carrinho.filter(obj => obj.id != id) 
+        
+        //se acaso tiver mais de um item repetido, irá adicionar todos exceto 1 ao array
+        if (ocorrencia > 1){
+            while (cont < this.state.carrinho.length) {
+                if (this.state.carrinho[cont].id == id){
+                    array.push(this.state.carrinho[cont])
+                    ocorrencia = ocorrencia - 1
+                    if (ocorrencia == 1){ 
+                        cont = this.state.carrinho.length
+                    }
+                }
+                cont++
+            }
+        }
+        
+        await this.setState({ carrinho: array })
+        this.props.onAddCarrinho({ ...this.state  })
+    }
 
     render() {
         return (
@@ -53,11 +120,12 @@ class Carrinho extends Component {
                         
                         {/* Lista de produtos adicionados */}
                         <View style={styles.blocoProdutos}>
-                            <FlatList data={this.state.produtos}
-                                keyExtractor={item => `${item.id}`}
+                            <FlatList data={this.state.carrinho}
+                                keyExtractor={(item, index) => index.toString()}
                                 renderItem={( { item } ) =>
-                                <ProdutosCarrinho key={item.id} {...item} />} />
-                        </View> 
+                                <ProdutosCarrinho key={item.id} {...item} 
+                                    onApagarJogo={this.apagarJogo} />} />
+                        </View>
 
                         {/* Informações do checkout */}
                         <View style={{ flexDirection: 'row' }}>
@@ -74,15 +142,16 @@ class Carrinho extends Component {
                                 </Text>
                             </View>
 
+                            {/* Os valores são puxados diretamente do state */}
                             <View style={styles.checkoutValores}>
                                 <Text style={this.state.fontsLoaded ? styles.valores : styles.valoresSemFonte }>
-                                    R$ 102,09
+                                    {`R$ ${this.state.subTotal}`}
                                 </Text>
                                 <Text style={this.state.fontsLoaded ? styles.valores : styles.valoresSemFonte }>
-                                    R$ 10
+                                    {`R$ ${this.state.frete}`}
                                 </Text>
                                 <Text style={this.state.fontsLoaded ? styles.valores : styles.valoresSemFonte }>
-                                    R$ 112,09
+                                    {`R$ ${this.state.total}`}
                                 </Text>
                             </View>
 
@@ -105,7 +174,6 @@ class Carrinho extends Component {
                             </View>
                         </TouchableOpacity>
                         
-
                     </View>
                 </View>
             </Modal>
@@ -143,11 +211,11 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     checkoutTitulo: {
-        width: Dimensions.get('window').width * 0.4,
+        width: Dimensions.get('window').width * 0.2,
         justifyContent: 'flex-start'
     },
     checkoutValores: {
-        width: Dimensions.get('window').width * 0.4,
+        width: Dimensions.get('window').width * 0.6,
         justifyContent: 'flex-end'
     },
     left: {
@@ -174,18 +242,6 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         fontSize: 25,
         margin: 10
-    },
-    texto: {
-        fontFamily: 'PTSans-Bold',
-        fontSize: 18,
-        textAlign: 'center',
-        color: '#fff',
-    },
-    textoSemFonte: {
-        fontFamily: '',
-        fontSize: 18,
-        textAlign: 'center',
-        color: '#fff',
     },
    tituloValores: {
         fontFamily: 'PTSans-Bold',
@@ -246,4 +302,16 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Carrinho
+const mapStateToProps = ({ produtos }) => {
+    return {
+        carrinho: produtos.carrinho
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddCarrinho: produtos => dispatch(addCarrinho(produtos))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Carrinho)

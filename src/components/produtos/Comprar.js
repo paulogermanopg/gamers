@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Dimensions, Text, TouchableOpacity } from 'react-native'
 import * as Font from 'expo-font'
 
+import { connect } from 'react-redux'
+import { addCarrinho } from '../../store/actions/produtos'
+
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,6 +15,7 @@ let customFonts = {
 class Comprar extends Component {
     state = {
         fontsLoaded: false,
+        carrinho: this.props.carrinho,
     }
 
     //Necessário para usar fonte personalizada no Expo
@@ -25,10 +29,27 @@ class Comprar extends Component {
     }
     //-------------------------------
 
+    //Varifica toda vez que houver atualização no estado da aplicação
+    componentDidUpdate = prevProps => {
+        if (prevProps != this.props) {
+            this.setState({ 
+                carrinho: this.props.carrinho,
+             })
+        }
+    }
+
+    //acrescenta mais um jogo no array do carrinho e upa no redux
+    carrinho = async() => {
+        let arrayCarrinho = this.state.carrinho
+        arrayCarrinho.push(this.props.jogo)
+        await this.setState({ carrinho: arrayCarrinho })
+        this.props.onAddCarrinho({ ...this.state  })
+    }
+
     render() {
         return (
             <TouchableOpacity style={styles.container}
-                onPress={this.nada}>
+                onPress={this.carrinho}>
                 <Text style={this.state.fontsLoaded ? styles.texto : styles.textoSemFonte }>+Carrinho</Text>
                 <FontAwesomeIcon icon={ faShoppingCart } size={28} color={'rgb(255,255,255)'}/>
             </TouchableOpacity>
@@ -61,4 +82,16 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Comprar
+const mapStateToProps = ({ produtos }) => {
+    return {
+        carrinho: produtos.carrinho,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddCarrinho: produtos => dispatch(addCarrinho(produtos))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comprar)

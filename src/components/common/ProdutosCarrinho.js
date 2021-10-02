@@ -6,8 +6,6 @@ import * as Font from 'expo-font'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import Comprar from '../produtos/Comprar'
-
 let customFonts = {
     'PTSans-Bold': require('../../../assets/fonts/PTSans-Bold.ttf'),
     'PTSans-Regular': require('../../../assets/fonts/PTSans-Regular.ttf'),
@@ -30,6 +28,11 @@ class ProdutosCarrinho extends Component {
     }
     //------------------------
 
+    //função callback para apagar o jogo selecionado do carrinho
+    apagar = id => {
+        this.props.onApagarJogo && this.props.onApagarJogo(id)
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -49,7 +52,7 @@ class ProdutosCarrinho extends Component {
                 {/* Botão para excluir o produto do carrinho */}
                 <View>
                     <TouchableOpacity style={styles.botoes}
-                        onPress={this.nada}>
+                        onPress={() => this.apagar(this.props.id)}>
                         <FontAwesomeIcon icon={ faTrash } size={28} color={'rgb(255,255,255)'}/>
                     </TouchableOpacity>
                 </View>

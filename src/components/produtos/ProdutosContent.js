@@ -22,7 +22,7 @@ class ProdutosContent extends Component {
                 <View style={styles.blocoDireito}>
                     <Titulo name={this.props.name} />
                     <Preco price={this.props.price} />
-                    <Comprar />
+                    <Comprar jogo={this.props}/>
                 </View>
 
             </View>
