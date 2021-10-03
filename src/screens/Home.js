@@ -12,7 +12,7 @@ export default class Home extends Component {
   render() {
       return (
         <View style={styles.container}>
-          <Header />
+          <Header navigation = { this.props.navigation } />
 
           <ScrollView>
 

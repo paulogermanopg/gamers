@@ -50,8 +50,10 @@ class Comprar extends Component {
         return (
             <TouchableOpacity style={styles.container}
                 onPress={this.carrinho}>
-                <Text style={this.state.fontsLoaded ? styles.texto : styles.textoSemFonte }>+Carrinho</Text>
+                
                 <FontAwesomeIcon icon={ faShoppingCart } size={28} color={'rgb(255,255,255)'}/>
+                <Text style={this.state.fontsLoaded ? styles.texto : styles.textoSemFonte }>+Carrinho</Text>
+                
             </TouchableOpacity>
         )
     }
@@ -59,10 +61,10 @@ class Comprar extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 10,
+        marginVertical: 10,
+        marginHorizontal: 5,
         padding: 5,
         borderWidth: 1,
         borderRadius: 10,

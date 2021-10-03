@@ -23,6 +23,7 @@ class Carrinho extends Component {
         total: 0,
         frete: 0,
         semProdutos: true,
+        desabilitar: true,
     }
 
     //Necessário para usar fonte personalizada no Expo
@@ -43,11 +44,13 @@ class Carrinho extends Component {
                 this.setState({ 
                     carrinho: this.props.carrinho,
                     semProdutos: true,
+                    desabilitar: true
                  })
              } else {
                 this.setState({ 
                     carrinho: this.props.carrinho,
                     semProdutos: false,
+                    desabilitar: false
                  })
              }
              this.calcularValores()
@@ -106,6 +109,12 @@ class Carrinho extends Component {
         
         await this.setState({ carrinho: array })
         this.props.onAddCarrinho({ ...this.state  })
+    }
+
+    //Fecha o modal do Carrinho e redireciona para a screem Produtos
+    continuarComprando = () => {
+        this.props.onCancel()
+        this.props.navigation.navigate('Produtos')
     }
 
     render() {
@@ -179,20 +188,27 @@ class Carrinho extends Component {
                         </View>
                         
                         {/* Botões para finalizar ou comprar mais */}
-                        <TouchableOpacity style={styles.left} onPress={this.props.onCancel}>
+                        <TouchableOpacity style={styles.left} onPress={this.continuarComprando}>
+                            
                             <View style={styles.botoesFinais02}>
                                 <Text style={this.state.fontsLoaded ? styles.textoBotao : styles.textoBotaoSemFonte }>
                                     Continuar Comprando
                                 </Text>
                             </View>
+
                         </TouchableOpacity>
                         
-                        <TouchableOpacity style={styles.left} onPress={this.props.onCancel}>
-                            <View style={styles.botoesFinais}>
+                        {/* O disabled indica se há produtos ou não no carrinho para poder finalizar a compra */}
+                        <TouchableOpacity style={styles.left} onPress={this.props.onCancel}
+                            disabled={this.state.desabilitar}>
+                            
+                            <View style={this.state.desabilitar ? 
+                                    styles.botoesFinalizarDesabilitado : styles.botoesFinalizar}>
                                 <Text style={this.state.fontsLoaded ? styles.textoBotao : styles.textoBotaoSemFonte }>
                                     Finalizar Compra
                                 </Text>
                             </View>
+
                         </TouchableOpacity>
                         
                     </View>
@@ -208,7 +224,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: 'rgba(0,0,0,0.7)',
         borderColor: '#BBB',
     },
     bloco: {
@@ -290,11 +306,20 @@ const styles = StyleSheet.create({
         fontSize: 18,
         margin: 3
     },
-    botoesFinais: {
+    botoesFinalizar: {
         width: Dimensions.get('window').width * 0.8,
         flexDirection: 'row',
         justifyContent: 'center',
         backgroundColor: '#006666',
+        borderBottomRightRadius: 20,
+        borderTopLeftRadius: 20,
+        marginVertical: 5,
+    },
+    botoesFinalizarDesabilitado: {
+        width: Dimensions.get('window').width * 0.8,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0, 102, 102,0.5)',
         borderBottomRightRadius: 20,
         borderTopLeftRadius: 20,
         marginVertical: 5,

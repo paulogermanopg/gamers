@@ -33,7 +33,8 @@ class Header extends Component {
             <View style={styles.container}>
 
                 <Carrinho isVisible={this.state.showCarrinho} 
-                    onCancel={() => this.setState({ showCarrinho: false })} />
+                    onCancel={() => this.setState({ showCarrinho: false })}
+                    navigation = { this.props.navigation } />
                 
                 {this.state.fontsLoaded &&
                     <Text style={styles.title}>Gamer$</Text>

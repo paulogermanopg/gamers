@@ -22,7 +22,7 @@ export default class Produtos extends Component {
   render() {
       return (
         <View style={styles.container}>
-          <Header />
+          <Header navigation = { this.props.navigation } />
 
           <Ordenacao produtos={this.state.produtos} onOrdenar={this.ordenar}/>
 
