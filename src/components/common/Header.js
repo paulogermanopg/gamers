@@ -14,7 +14,6 @@ class Header extends Component {
     state = {
         fontsLoaded: false,
         showCarrinho: false,
-        carrinho: this.props.carrinho,
     }
 
     //Necessário para usar fonte personalizada no Expo

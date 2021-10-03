@@ -1,18 +1,27 @@
 import React, {Component} from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import AppLoading from 'expo-app-loading'
-import * as Font from 'expo-font'
+import { StyleSheet, View, ScrollView } from 'react-native'
+
 
 import Header from '../components/common/Header'
-
+import Formalizacao from '../components/areaGamer/Formalizacao'
+import Historico from '../components/areaGamer/Historico'
+import Favoritos from '../components/areaGamer/Favoritos'
 
 export default class AreaGamer extends Component { 
 
   render() {
       return (
-        <View style={styles.container}>
+        <View style={styles.container}>   
           <Header />
-          <Text>Área Gamer</Text>
+
+          <ScrollView>
+
+            <Formalizacao />
+            <Favoritos />
+            <Historico />
+
+          </ScrollView>
+          
         </View>
       )
   }
