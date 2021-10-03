@@ -21,7 +21,7 @@ class Carousel extends Component {
         images: images
     }
 
-    //em um intervalo de 3000 milisegundos (3 segundos), ele avança horizontalmente
+    //em um intervalo de 3500 milisegundos (3.5 segundos), ele avança horizontalmente
     componentDidMount = () => {
         setInterval(() => {
             this.setState(prev => ({ 
@@ -36,7 +36,7 @@ class Carousel extends Component {
                     //o x precisa pegar o tamanho da tela vezes 0.95, referente ao styles.scroll 
                 })
             })
-        }, 3000);
+        }, 3500);
     }
 
     render() {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     image: {
         flex: 1,
         width: Dimensions.get('window').width * 0.95,
-        height: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').width * 0.65,
         resizeMode: 'contain',
         borderBottomRightRadius: 20,
         borderTopLeftRadius: 20,
@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
     },
     scroll: {
         width: Dimensions.get('window').width * 0.95,
-        height: Dimensions.get('window').width,
     },
 })
 
