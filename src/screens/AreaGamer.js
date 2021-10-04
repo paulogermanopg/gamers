@@ -18,7 +18,7 @@ class AreaGamer extends Component {
   componentDidMount = () => {
     setInterval(() => {
         this.atualizar()
-    }, 3500);
+    }, 2000);
   }
   
   //Varifica toda vez que houver atualização no estado da aplicação

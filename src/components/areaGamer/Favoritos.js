@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Dimensions, Text, FlatList } from 'react-native'
 import * as Font from 'expo-font'
 
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faHeartBroken } from '@fortawesome/free-solid-svg-icons'
+
 import FavoritosContent from './FavoritosContent'
 
 let customFonts = {
@@ -13,7 +16,6 @@ let customFonts = {
 class Favoritos extends Component {
     state = {
         fontsLoaded: false,
-        favoritos: this.props.favoritos,
     }
 
     //Necessário para usar fonte personalizada no Expo
@@ -38,15 +40,30 @@ class Favoritos extends Component {
                 </View>
 
                 {/* Lista Horizontal dos jogos favoritados */}
+                {/* Se houver favoritos na lista irá renderizar, se não mostrará uma mensagem */}
                 <View style={styles.faixa}>
+                    {this.props.favoritos.length > 0 ?
 
-                    <View style={{ justifyContent: 'center', marginHorizontal: 10 }}>
-                        <FlatList data={this.state.favoritos}
-                            horizontal={true}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={( { item } ) =>
-                            <FavoritosContent key={item.id} {...item} onAtualizar={this.props.onAtualizar} />} />
-                    </View>
+                        <View style={{ justifyContent: 'center', marginHorizontal: 10 }}>
+                            <FlatList data={this.props.favoritos}
+                                horizontal={true}
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={( { item } ) =>
+                                <FavoritosContent key={item.id} {...item} onAtualizar={this.props.onAtualizar} />} />
+                        </View>
+
+                        :
+                        
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <View style={{ alignItems: 'center', padding: 20 }}>
+                                <FontAwesomeIcon icon={ faHeartBroken } size={50} color='rgba(0, 102, 102,0.5)'/>
+                            </View>
+                            <Text style={this.state.fontsLoaded ? styles.texto: styles.textoSemFonte}>
+                                Você ainda não favoritou um jogo
+                            </Text>
+                        </View>
+                        
+                    }
 
                 </View>
 
@@ -88,6 +105,23 @@ const styles = StyleSheet.create({
         fontSize: 22,
         marginVertical: 5,
         marginHorizontal: 15
+    },
+    texto: { 
+        fontFamily: 'PTSans-Bold',
+        color: 'rgba(0, 102, 102,0.5)',
+        textAlign: 'center',
+        fontSize: 18,
+        marginVertical: 5,
+        marginHorizontal: 15,
+        width: Dimensions.get('window').width * 0.5,
+    },
+    textoSemFonte: {
+        color: 'rgba(0, 102, 102,0.5)',
+        textAlign: 'center',
+        fontSize: 18,
+        marginVertical: 5,
+        marginHorizontal: 15,
+        width: Dimensions.get('window').width * 0.5,
     },
 })
 

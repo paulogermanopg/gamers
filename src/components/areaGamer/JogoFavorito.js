@@ -5,7 +5,6 @@ import { requiresImages, indice } from '../produtos/requiresImages'
 import Titulo from '../produtos/Titulo'
 import Preco from '../produtos/Preco'
 import Comprar from '../produtos/Comprar'
-import Favoritar from '../produtos/Favoritar'
 
 class JogoFavorito extends Component {
     //Este é o componente responsável pelo container do produto, chamando como filhos Titulo, Preço e Comprar 
@@ -31,7 +30,6 @@ class JogoFavorito extends Component {
                             <Preco price={this.props.jogo.price} />
                             <View style={{ flexDirection:  'row' }}>
                                 <Comprar jogo={this.props.jogo} onCancel={this.props.onCancel}/>
-                                <Favoritar jogo={this.props.jogo} onAtualizar={this.props.onAtualizar} />
                             </View>
 
                         </View>

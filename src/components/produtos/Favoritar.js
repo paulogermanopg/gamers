@@ -21,36 +21,38 @@ class Favoritar extends Component {
             this.setState({ 
                 favoritos: this.props.favoritos,
              })
-             
-             if (this.props.favoritos.indexOf(this.props.jogo) != -1) {
-                
-                this.setState({ corFavoritada: '#DC143C' })
-             }
+
         }
     }
 
     favoritos = async() => {
         let arrayFavoritos = this.state.favoritos
+        //verifica quantas vezes o jogo aparece na lista, no caso será 0 ou 1
+        let ocorrencia = arrayFavoritos.filter(obj => obj.id == this.props.jogo.id).length 
 
-        if (arrayFavoritos.indexOf(this.props.jogo) != -1){
-            
+        let cor = ''
+
+        //Se o jogo já tiver na lista de favoritos ele filtra e pega todos menos ele
+        //Se não apenas acrescenta o mesmo
+        if (ocorrencia > 0){
+            arrayFavoritos = arrayFavoritos.filter(obj => obj.id != this.props.jogo.id) 
+            cor = 'rgb(255,255,255)'
         } else {
             arrayFavoritos.push(this.props.jogo)
+            cor = '#81e6e3'
         }
-        
-        await this.setState({ favoritos: arrayFavoritos, corFavoritada: '#00ada8' })
+
+        await this.setState({ favoritos: arrayFavoritos, corFavoritada: cor })
         this.props.onFavoritar({ ...this.state  })
 
-        if (this.props.onAtualizar){
-            this.props.onAtualizar && this.props.onAtualizar()
-        }
     }
 
     render() {
         return (
             <TouchableOpacity style={styles.container}
                 onPress={this.favoritos}>
-                <FontAwesomeIcon icon={ faHeart } size={28} color={this.state.corFavoritada}/>
+                <FontAwesomeIcon icon={ faHeart } size={28} 
+                    color={this.state.corFavoritada}/>
             </TouchableOpacity>
         )
     }

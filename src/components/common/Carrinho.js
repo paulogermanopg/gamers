@@ -132,6 +132,8 @@ class Carrinho extends Component {
         this.props.onRegistrar({ ...this.state  })
         this.props.onLimparCarrinho()
         this.props.onCarrinho && this.props.onCarrinho()
+        this.props.onCancel()
+        this.props.navigation.navigate('AreaGamer')
     }
 
     render() {

@@ -14,6 +14,7 @@ class Produtos extends Component {
   state = {
     produtos: jogos,
     carrinho: this.props.carrinho,
+    favoritos: this.props.favoritos
   }
 
   //Varifica toda vez que houver atualização no estado da aplicação
@@ -32,7 +33,7 @@ class Produtos extends Component {
 
   //funcão para atualizar o icone do carrinho
   carrinho = () => {
-    this.setState({ carrinho: this.props.carrinho })
+    this.setState({ carrinho: this.props.carrinho, favoritos: this.props.favoritos })
   }
 
   render() {
@@ -61,9 +62,10 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = ({ produtos }) => {
+const mapStateToProps = ({ produtos, user }) => {
   return {
-      carrinho: produtos.carrinho
+      carrinho: produtos.carrinho,
+      favoritos: user.favoritos
   }
 }
 
