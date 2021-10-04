@@ -44,6 +44,11 @@ class Comprar extends Component {
         arrayCarrinho.push(this.props.jogo)
         await this.setState({ carrinho: arrayCarrinho })
         this.props.onAddCarrinho({ ...this.state  })
+        this.props.onCarrinho && this.props.onCarrinho()
+        
+        if (this.props.onCancel){
+            this.props.onCancel && this.props.onCancel()
+        }
     }
 
     render() {

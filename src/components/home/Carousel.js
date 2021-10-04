@@ -36,6 +36,8 @@ class Carousel extends Component {
                     //o x precisa pegar o tamanho da tela vezes 0.95, referente ao styles.scroll 
                 })
             })
+
+            this.props.onCarrinho && this.props.onCarrinho()
         }, 3500);
     }
 

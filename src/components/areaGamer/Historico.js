@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Dimensions, Text, FlatList } from 'react-native'
 import * as Font from 'expo-font'
-import data from '../../../products.json'
 
 import HistoricoContent from './HistoricoContent'
-
-let jogos = data
 
 let customFonts = {
     'ConcertOne-Regular': require('../../../assets/fonts/ConcertOne-Regular.ttf'),
@@ -43,7 +40,7 @@ class Historico extends Component {
                 <View style={styles.faixa}>
 
                     <View style={{ justifyContent: 'center', marginHorizontal: 10 }}>
-                        <FlatList data={jogos}
+                        <FlatList data={this.props.historico}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={( { item } ) =>
                             <HistoricoContent key={item.id} {...item} />} />

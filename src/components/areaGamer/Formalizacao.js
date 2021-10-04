@@ -34,7 +34,7 @@ class Formalizacao extends Component {
             this.setState({ bomDTN: 'Bom dia', icon: faCoffee })
         } else if ((this.state.horas >= 12) && (this.state.horas < 18)) {
             this.setState({ bomDTN: 'Boa tarde', icon: faCloud })
-        } else if ((this.state.horas >= 18) && (this.state.horas < 12)) {
+        } else if ((this.state.horas >= 18) && (this.state.horas <24)) {
             this.setState({ bomDTN: 'Boa noite', icon: faMoon })
         } else {
             this.setState({ bomDTN: 'Boa madrugada', icon: faUserSecret })
@@ -54,7 +54,7 @@ class Formalizacao extends Component {
                     </View>
                     
                     <Text style={this.state.fontsLoaded ? styles.textoTitulo: styles.textoTituloSemFonte}> 
-                        {this.state.bomDTN} Novo Usuário
+                        {this.state.bomDTN} Usuário
                     </Text>
 
                 </View>

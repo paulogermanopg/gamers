@@ -25,8 +25,8 @@ class ProdutosContent extends Component {
                     <Titulo name={this.props.name} />
                     <Preco price={this.props.price} />
                     <View style={{ flexDirection:  'row' }}>
-                        <Comprar jogo={this.props}/>
-                        <Favoritar />
+                        <Comprar jogo={this.props} onCarrinho={this.props.onCarrinho} />
+                        <Favoritar jogo={this.props} />
                     </View>
                     
                 </View>

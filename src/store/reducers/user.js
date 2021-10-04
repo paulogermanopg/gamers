@@ -1,21 +1,22 @@
-import { ADD_PRODUTO, LIMPAR_CARRINHO } from '../actions/actionTypes'
+import { FAVORITAR_PRODUTO, HISTORICO } from '../actions/actionTypes'
 
 const initialState = {
-    carrinho: [],
+    favoritos: [],
+    historico: [],
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_PRODUTO:
+        case FAVORITAR_PRODUTO:
             return {
                 ...state,
-                carrinho: action.payload.carrinho,
+                favoritos: action.payload.favoritos,
             }
 
-        case LIMPAR_CARRINHO:
+        case HISTORICO:
             return {
                 ...state,
-                carrinho: [],
+                historico: action.payload.historico,
             }
             
         default:

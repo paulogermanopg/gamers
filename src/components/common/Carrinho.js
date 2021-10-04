@@ -4,7 +4,8 @@ import * as Font from 'expo-font'
 import ProdutosCarrinho from './ProdutosCarrinho'
 
 import { connect } from 'react-redux'
-import { addCarrinho } from '../../store/actions/produtos'
+import { addCarrinho, limparCarrinho } from '../../store/actions/produtos'
+import { registrar } from '../../store/actions/user'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTimes, faGhost } from '@fortawesome/free-solid-svg-icons'
@@ -24,6 +25,7 @@ class Carrinho extends Component {
         frete: 0,
         semProdutos: true,
         desabilitar: true,
+        historico: this.props.historico,
     }
 
     //Necessário para usar fonte personalizada no Expo
@@ -40,6 +42,7 @@ class Carrinho extends Component {
     //Varifica toda vez que houver atualização no estado da aplicação
     componentDidUpdate = prevProps => {
         if (prevProps != this.props) {
+       
              if(this.props.carrinho.length == 0){
                 this.setState({ 
                     carrinho: this.props.carrinho,
@@ -115,6 +118,20 @@ class Carrinho extends Component {
     continuarComprando = () => {
         this.props.onCancel()
         this.props.navigation.navigate('Produtos')
+    }
+
+    //Finaliza a compra, zerando o array do carrinho e enviando o histórico
+    finalizarCompra = async() => {
+        let arrayHistorico = this.state.historico
+        let cont = 0
+        while (cont < this.state.carrinho.length){
+            arrayHistorico.push(this.state.carrinho[cont])
+            cont ++
+        }
+        await this.setState({ historico: arrayHistorico, carrinho: [] })
+        this.props.onRegistrar({ ...this.state  })
+        this.props.onLimparCarrinho()
+        this.props.onCarrinho && this.props.onCarrinho()
     }
 
     render() {
@@ -199,7 +216,7 @@ class Carrinho extends Component {
                         </TouchableOpacity>
                         
                         {/* O disabled indica se há produtos ou não no carrinho para poder finalizar a compra */}
-                        <TouchableOpacity style={styles.left} onPress={this.props.onCancel}
+                        <TouchableOpacity style={styles.left} onPress={this.finalizarCompra}
                             disabled={this.state.desabilitar}>
                             
                             <View style={this.state.desabilitar ? 
@@ -348,15 +365,18 @@ const styles = StyleSheet.create({
     },
 })
 
-const mapStateToProps = ({ produtos }) => {
+const mapStateToProps = ({ produtos, user }) => {
     return {
-        carrinho: produtos.carrinho
+        carrinho: produtos.carrinho,
+        historico: user.historico
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddCarrinho: produtos => dispatch(addCarrinho(produtos))
+        onAddCarrinho: produtos => dispatch(addCarrinho(produtos)),
+        onLimparCarrinho: () => dispatch(limparCarrinho()),
+        onRegistrar: produtos => dispatch(registrar(produtos))
     }
 }
 

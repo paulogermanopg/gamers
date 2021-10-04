@@ -1,4 +1,4 @@
-import { ADD_PRODUTO, CLEAN_CARRINHO } from './actionTypes'
+import { ADD_PRODUTO, LIMPAR_CARRINHO } from './actionTypes'
 
 export const addCarrinho = produtos => {
     return {
@@ -7,9 +7,9 @@ export const addCarrinho = produtos => {
     }
 }
 
-export const cleanCarrinho = () => {
+export const limparCarrinho = () => {
     return {
-        type: CLEAN_CARRINHO,
+        type: LIMPAR_CARRINHO,
     }
 }
 

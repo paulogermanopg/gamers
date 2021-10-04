@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { StyleSheet, View, FlatList } from 'react-native'
 
+import { connect } from 'react-redux'
 
 import Header from '../components/common/Header'
 import ProdutosContent from '../components/produtos/ProdutosContent'
@@ -9,27 +10,42 @@ import Ordenacao from '../components/produtos/Ordenacao'
 
 let jogos = data
 
-export default class Produtos extends Component {
+class Produtos extends Component {
   state = {
     produtos: jogos,
+    carrinho: this.props.carrinho,
   }
+
+  //Varifica toda vez que houver atualização no estado da aplicação
+    componentDidUpdate = prevProps => {
+        if (prevProps != this.props) {
+            this.setState({ 
+                carrinho: this.props.carrinho,
+             })
+        }
+    }
 
 
   ordenar = organizado => {
     this.setState({ produtos: organizado })
   }
 
+  //funcão para atualizar o icone do carrinho
+  carrinho = () => {
+    this.setState({ carrinho: this.props.carrinho })
+  }
+
   render() {
       return (
         <View style={styles.container}>
-          <Header navigation = { this.props.navigation } />
+          <Header navigation = { this.props.navigation } carrinho={this.state.carrinho}/>
 
           <Ordenacao produtos={this.state.produtos} onOrdenar={this.ordenar}/>
 
           <FlatList data={this.state.produtos}
             keyExtractor={item => `${item.id}`}
             renderItem={( { item } ) =>
-            <ProdutosContent key={item.id} {...item} />} />
+            <ProdutosContent key={item.id} {...item} onCarrinho={this.carrinho} />} />
         </View>
       )
   }
@@ -44,3 +60,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 })
+
+const mapStateToProps = ({ produtos }) => {
+  return {
+      carrinho: produtos.carrinho
+  }
+}
+
+export default connect(mapStateToProps)(Produtos)
+

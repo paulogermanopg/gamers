@@ -2,30 +2,55 @@ import React, { Component } from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { connect } from 'react-redux'
-import { addCarrinho } from '../../store/actions/produtos'
+import { favoritar } from '../../store/actions/user'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 class Favoritar extends Component {
     state = {
-        carrinho: this.props.carrinho,
+        favoritos: this.props.favoritos,
+        corFavoritada: 'rgb(255,255,255)',
     }
 
     //Varifica toda vez que houver atualização no estado da aplicação
     componentDidUpdate = prevProps => {
-        if (prevProps != this.props) {
+        
+        if (prevProps.favoritos !== this.props.favoritos) {
+
             this.setState({ 
-                carrinho: this.props.carrinho,
+                favoritos: this.props.favoritos,
              })
+             
+             if (this.props.favoritos.indexOf(this.props.jogo) != -1) {
+                
+                this.setState({ corFavoritada: '#DC143C' })
+             }
+        }
+    }
+
+    favoritos = async() => {
+        let arrayFavoritos = this.state.favoritos
+
+        if (arrayFavoritos.indexOf(this.props.jogo) != -1){
+            
+        } else {
+            arrayFavoritos.push(this.props.jogo)
+        }
+        
+        await this.setState({ favoritos: arrayFavoritos, corFavoritada: '#00ada8' })
+        this.props.onFavoritar({ ...this.state  })
+
+        if (this.props.onAtualizar){
+            this.props.onAtualizar && this.props.onAtualizar()
         }
     }
 
     render() {
         return (
             <TouchableOpacity style={styles.container}
-                onPress={this.carrinho}>
-                <FontAwesomeIcon icon={ faHeart } size={28} color={'rgb(255,255,255)'}/>
+                onPress={this.favoritos}>
+                <FontAwesomeIcon icon={ faHeart } size={28} color={this.state.corFavoritada}/>
             </TouchableOpacity>
         )
     }
@@ -44,15 +69,15 @@ const styles = StyleSheet.create({
     },
 })
 
-const mapStateToProps = ({ produtos }) => {
+const mapStateToProps = ({ user }) => {
     return {
-        carrinho: produtos.carrinho,
+        favoritos: user.favoritos,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddCarrinho: produtos => dispatch(addCarrinho(produtos))
+        onFavoritar: produtos => dispatch(favoritar(produtos))
     }
 }
 

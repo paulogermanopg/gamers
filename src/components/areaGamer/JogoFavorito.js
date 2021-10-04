@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Image, Dimensions, Modal } from 'react-native'
 import { requiresImages, indice } from '../produtos/requiresImages'
 
-
 import Titulo from '../produtos/Titulo'
 import Preco from '../produtos/Preco'
 import Comprar from '../produtos/Comprar'
@@ -31,8 +30,8 @@ class JogoFavorito extends Component {
                             <Titulo name={this.props.jogo.name} />
                             <Preco price={this.props.jogo.price} />
                             <View style={{ flexDirection:  'row' }}>
-                                <Comprar jogo={this.props}/>
-                                <Favoritar />
+                                <Comprar jogo={this.props.jogo} onCancel={this.props.onCancel}/>
+                                <Favoritar jogo={this.props.jogo} onAtualizar={this.props.onAtualizar} />
                             </View>
 
                         </View>

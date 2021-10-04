@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Dimensions, Text, FlatList } from 'react-native'
 import * as Font from 'expo-font'
-import data from '../../../products.json'
 
 import FavoritosContent from './FavoritosContent'
-
-let jogos = data
 
 let customFonts = {
     'ConcertOne-Regular': require('../../../assets/fonts/ConcertOne-Regular.ttf'),
@@ -16,6 +13,7 @@ let customFonts = {
 class Favoritos extends Component {
     state = {
         fontsLoaded: false,
+        favoritos: this.props.favoritos,
     }
 
     //Necessário para usar fonte personalizada no Expo
@@ -43,11 +41,11 @@ class Favoritos extends Component {
                 <View style={styles.faixa}>
 
                     <View style={{ justifyContent: 'center', marginHorizontal: 10 }}>
-                        <FlatList data={jogos}
+                        <FlatList data={this.state.favoritos}
                             horizontal={true}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={( { item } ) =>
-                            <FavoritosContent key={item.id} {...item} />} />
+                            <FavoritosContent key={item.id} {...item} onAtualizar={this.props.onAtualizar} />} />
                     </View>
 
                 </View>

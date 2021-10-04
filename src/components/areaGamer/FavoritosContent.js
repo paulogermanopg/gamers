@@ -34,10 +34,10 @@ class FavoritosContent extends Component {
                 {/* Modal do jogo escolhido */}
                 <JogoFavorito isVisible={this.state.showFavorito} 
                     onCancel={() => this.setState({ showFavorito: false })}
-                    jogo={this.props} />
+                    jogo={this.props} onAtualizar={this.props.onAtualizar} />
+
 
                 {/* Container mostrando o jogo */}
-
                 <TouchableOpacity onPress={() => this.setState({ showFavorito: true })}>
                     <View style={styles.blocoCima}>
                         <View style={styles.containerImage}>
