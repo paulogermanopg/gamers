@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        marginVertical: 10,
+        justifyContent: 'flex-start',
+        marginTop: 10,
     },
     faixa: {
         flexDirection: 'row',
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         fontFamily: 'PTSans-Bold',
         color: '#fff',
         textAlign: 'center',
-        fontSize: 25,
+        fontSize: 23,
         marginVertical: 5,
         marginLeft: -30,
     },
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         flex: 1,
         color: '#fff',
         textAlign: 'center',
-        fontSize: 25,
+        fontSize: 23,
         marginVertical: 5,
         marginLeft: -30,
     },

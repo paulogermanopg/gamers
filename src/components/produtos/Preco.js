@@ -42,14 +42,14 @@ const styles = StyleSheet.create({
     },
     texto: {
         fontFamily: 'PTSans-Bold',
-        fontSize: 25,
+        fontSize: 22,
         textAlign: 'center',
         color: '#fff',
         width: Dimensions.get('window').width * 0.5,
     },
     textoSemFonte: {
         fontFamily: '',
-        fontSize: 25,
+        fontSize: 22,
         textAlign: 'center',
         color: '#fff',
         width: Dimensions.get('window').width * 0.5,

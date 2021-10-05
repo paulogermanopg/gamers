@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { StyleSheet, View, ScrollView } from 'react-native'
+import { StyleSheet, View, ScrollView, Dimensions } from 'react-native'
 
 import { connect } from 'react-redux'
 
@@ -42,14 +42,12 @@ class AreaGamer extends Component {
       return (
         <View style={styles.container}>   
           <Header navigation = { this.props.navigation } carrinho={this.state.carrinho} />
-
           <ScrollView>
-
             <Formalizacao />
             <Favoritos favoritos={this.state.favoritos} onAtualizar={this.atualizar} />
             <Historico historico={this.state.historico} />
-
           </ScrollView>
+          
           
         </View>
       )

@@ -29,6 +29,7 @@ class Ordenacao extends Component {
     }
     // ------------
 
+    //funcção callback que irá retornar o array ordenado para ser renderizado no Flatlist
     ordenar = tipo => {
 
         switch (tipo){
@@ -84,26 +85,54 @@ class Ordenacao extends Component {
             <View style={styles.container}>
                 <Collapse onToggle={()=>{this.setState({ collapse: true })}} isCollapsed={this.state.collapse}>
                     <CollapseHeader style={styles.collapseH}>
+
                         <Text style={this.state.fontsLoaded ? styles.collapseMaior : styles.collapseMaiorSemFonte}>
                             {`Ordenar por: ${this.state.ordernarPor}`}
                         </Text>
+
                         <View style={styles.direita}>
                             <FontAwesomeIcon icon={ faSort } size={28} color={'rgb(255,255,255)'}/>
                         </View>
+
                     </CollapseHeader>
+
                     <CollapseBody>
-                        <TouchableOpacity onPress={() => this.ordenar('Alfabeto')}>
-                            <Text style={this.state.fontsLoaded ? styles.collapse : styles.collapseSemFonte}>Ordem Alfabética</Text>
+                        <TouchableOpacity 
+                            onPress={() => this.ordenar('Alfabeto')}>
+
+                            <Text style={this.state.fontsLoaded ? styles.collapse : styles.collapseSemFonte}>
+                                Ordem Alfabética
+                            </Text>
+
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.ordenar('Maior')}>
-                            <Text style={this.state.fontsLoaded ? styles.collapse : styles.collapseSemFonte}>Maior preço</Text>
+
+                        <TouchableOpacity 
+                            onPress={() => this.ordenar('Maior')}>
+
+                            <Text style={this.state.fontsLoaded ? styles.collapse : styles.collapseSemFonte}>
+                                Maior preço
+                            </Text>
+
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.ordenar('Menor')}>
-                            <Text style={this.state.fontsLoaded ? styles.collapse : styles.collapseSemFonte}>Menor Preço</Text>
+
+                        <TouchableOpacity 
+                            onPress={() => this.ordenar('Menor')}>
+
+                            <Text style={this.state.fontsLoaded ? styles.collapse : styles.collapseSemFonte}>
+                                Menor Preço
+                            </Text>
+
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.ordenar('Popular')}>
-                            <Text style={this.state.fontsLoaded ? styles.collapse : styles.collapseSemFonte}>Popularidade</Text>
+
+                        <TouchableOpacity 
+                            onPress={() => this.ordenar('Popular')}>
+
+                            <Text style={this.state.fontsLoaded ? styles.collapse : styles.collapseSemFonte}>
+                                Popularidade
+                            </Text>
+
                         </TouchableOpacity>
+
                     </CollapseBody>
                 </Collapse>
             </View>
@@ -136,7 +165,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginBottom: 10,
         marginVertical: 5,
-        fontSize: 20,
+        fontSize: 18,
         padding: 5,
         alignSelf: 'center',
         borderRadius: 10,
@@ -148,7 +177,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginBottom: 10,
         marginVertical: 5,
-        fontSize: 20,
+        fontSize: 18,
         padding: 5,
         alignSelf: 'center',
         borderRadius: 10,
@@ -160,28 +189,14 @@ const styles = StyleSheet.create({
         fontFamily: 'PTSans-Bold',
         color: '#fff',
         margin: 10,
-        fontSize: 20,
+        fontSize: 18,
         textAlign: 'center',
     },
     collapseMaiorSemFonte: {
         color: '#fff',
         margin: 10,
-        fontSize: 20,
+        fontSize: 18,
         textAlign: 'center',
-    },
-    texto: {
-        fontFamily: 'PTSans-Bold',
-        fontSize: 25,
-        textAlign: 'center',
-        color: '#fff',
-        width: Dimensions.get('window').width * 0.5,
-    },
-    textoSemFonte: {
-        fontFamily: '',
-        fontSize: 25,
-        textAlign: 'center',
-        color: '#fff',
-        width: Dimensions.get('window').width * 0.5,
     },
 })
 

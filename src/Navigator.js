@@ -15,7 +15,7 @@ const MenuRoutes = {
         navigationOptions: {
             title: 'Home',
             tabBarIcon: ({ tintColor }) =>
-               <FontAwesomeIcon icon={ faHome } size={32} color={tintColor}/>
+               <FontAwesomeIcon icon={ faHome } size={30} color={tintColor}/>
         }
     },
     Produtos: {
@@ -24,7 +24,7 @@ const MenuRoutes = {
         navigationOptions: {
             title: 'Produtos',
             tabBarIcon: ({ tintColor }) =>
-               <FontAwesomeIcon icon={ faSearchDollar } size={32} color={tintColor}/>
+               <FontAwesomeIcon icon={ faSearchDollar } size={30} color={tintColor}/>
         }
     },
     AreaGamer: {
@@ -33,7 +33,7 @@ const MenuRoutes = {
         navigationOptions: {
             title: 'AreaGamer',
             tabBarIcon: ({ tintColor }) =>
-                <FontAwesomeIcon icon={ faGamepad } size={32} color={tintColor}/>
+                <FontAwesomeIcon icon={ faGamepad } size={30} color={tintColor}/>
         }
     },
     

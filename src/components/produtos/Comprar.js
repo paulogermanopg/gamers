@@ -77,13 +77,13 @@ const styles = StyleSheet.create({
     },
     texto: {
         fontFamily: 'PTSans-Bold',
-        fontSize: 18,
+        fontSize: 16,
         textAlign: 'center',
         color: '#fff',
     },
     textoSemFonte: {
         fontFamily: '',
-        fontSize: 18,
+        fontSize: 16,
         textAlign: 'center',
         color: '#fff',
     },

@@ -42,17 +42,18 @@ const styles = StyleSheet.create({
     },
     titulo: {
         fontFamily: 'PTSans-Bold',
-        fontSize: 20,
+        fontSize: 18,
         textAlign: 'center',
         color: '#fff',
-        width: Dimensions.get('window').width * 0.5,
+        width: Dimensions.get('window').width * 0.4,
+        marginHorizontal: 5,
     },
     tituloSemFonte: {
         fontFamily: '',
-        fontSize: 20,
+        fontSize: 18,
         textAlign: 'center',
         color: '#fff',
-        width: Dimensions.get('window').width * 0.5,
+        width: Dimensions.get('window').width * 0.4,
     },
 })
 

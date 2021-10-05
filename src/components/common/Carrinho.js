@@ -43,20 +43,20 @@ class Carrinho extends Component {
     componentDidUpdate = prevProps => {
         if (prevProps != this.props) {
        
-             if(this.props.carrinho.length == 0){
-                this.setState({ 
-                    carrinho: this.props.carrinho,
-                    semProdutos: true,
-                    desabilitar: true
-                 })
-             } else {
-                this.setState({ 
-                    carrinho: this.props.carrinho,
-                    semProdutos: false,
-                    desabilitar: false
-                 })
-             }
-             this.calcularValores()
+            if(this.props.carrinho.length == 0){
+            this.setState({ 
+                carrinho: this.props.carrinho,
+                semProdutos: true,
+                desabilitar: true
+                })
+            } else {
+            this.setState({ 
+                carrinho: this.props.carrinho,
+                semProdutos: false,
+                desabilitar: false
+                })
+            }
+            this.calcularValores()
         }
     }
 
@@ -303,26 +303,26 @@ const styles = StyleSheet.create({
         fontFamily: 'PTSans-Bold',
         color: '#005252',
         textAlign: 'left',
-        fontSize: 18,
+        fontSize: 16,
         margin: 3
     },
     tituloValoresSemFonte: {
         color: '#005252',
         textAlign: 'left',
-        fontSize: 18,
+        fontSize: 16,
         margin: 3
     },
     valores: {
         fontFamily: 'PTSans-Bold',
         color: '#005252',
         textAlign: 'right',
-        fontSize: 18,
+        fontSize: 16,
         margin: 3
     },
    valoresSemFonte: {
         color: '#005252',
         textAlign: 'left',
-        fontSize: 18,
+        fontSize: 16,
         margin: 3
     },
     botoesFinalizar: {

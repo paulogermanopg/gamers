@@ -65,27 +65,27 @@ const styles = StyleSheet.create({
         fontFamily: 'PTSans-Bold',
         color: '#fff',
         textAlign: 'center',
-        fontSize: 25,
+        fontSize: 23,
         margin: 5
     },
     textoTituloSemFonte: {
         color: '#fff',
         textAlign: 'center',
-        fontSize: 25,
+        fontSize: 23,
         margin: 10
     },
     texto: {
         fontFamily: 'PTSans-Regular',
         color: '#005252',
         textAlign: 'justify',
-        fontSize: 20,
+        fontSize: 18,
         margin: 3,
         width: Dimensions.get('window').width * 0.87,
     },
     textoSemFonte: {
         color: '#005252',
         textAlign: 'justify',
-        fontSize: 20,
+        fontSize: 18,
         margin: 3,
         width: Dimensions.get('window').width * 0.87,
     },

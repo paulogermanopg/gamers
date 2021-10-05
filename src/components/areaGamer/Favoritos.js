@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 20,
         marginVertical: 5,
         width: Dimensions.get('window').width * 0.95,
+        //height: Dimensions.get('window').width * 0.42,
     },
     textoTitulo: {
         flex: 1,

@@ -53,7 +53,7 @@ class Header extends Component {
                     }
                     
                     {/* Simplesmente o ícone do carrinho */}
-                    <FontAwesomeIcon icon={ faShoppingCart } size={32} 
+                    <FontAwesomeIcon icon={ faShoppingCart } size={30} 
                         color={this.props.carrinho.length > 0 ? '#789ac7' : 'rgb(255,255,255)'}/>
                 
                 </TouchableOpacity>
@@ -69,18 +69,20 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 0,
         padding: 10,
-        paddingTop: 35,
+        paddingTop: 30,
         borderBottomWidth: 0.5,
         borderColor: '#BBB',
         backgroundColor: '#006666',
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center'
     },
     title: {
         color: '#FFF',
         fontFamily: 'ConcertOne-Regular',
-        fontSize: 35,
+        fontSize: 32,
+        marginBottom: -5
     },
     textNumeroProdutos: {
         color: '#789ac7',
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingRight: 5,
-        paddingTop: 5
+        paddingTop: 10
     }
 })
 

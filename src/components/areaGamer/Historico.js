@@ -73,7 +73,7 @@ class Historico extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 2,
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: 10,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 20,
         marginVertical: 5,
         width: Dimensions.get('window').width * 0.95,
-        height: Dimensions.get('window').height * 0.2,
+        height: Dimensions.get('window').height * 0.35,
     },
     textoTitulo: {
         flex: 1,
