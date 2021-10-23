@@ -3,7 +3,7 @@
 ![Preview-Screens](https://github.com/paulogermanopg/gamers/blob/main/screens-shot.jpg)
 
 ## Sobre este projeto
-###obs: Toda e qualquer imagem utilizada neste projeto, mensão a quaisquer jogos, produtos e informações, são apenas utilizados para complementar. Não cabe a mim os direitos autoriais de tais produtos.
+### obs: Toda e qualquer imagem utilizada neste projeto, mensão a quaisquer jogos, produtos e informações, são apenas utilizados para complementar. Não cabe a mim os direitos autoriais de tais produtos.
 Este projeto traz como principal ideia montar um front-end Mobile para um E-commerce de jogos digitias. Contendo a leitura dinâmica dos produtos através de um arquivo .json, e o gerenciamento dos dados desde a compra até o registro final após o check-out.
 Tendo como página inicial um Carousel de imagem com Scroll automático, como também uma área de aresentação do aplicativo. Além de ser possível favoritar produtos, na última aba, é visto um container reservado para o histórico de compras do usuário.
 
